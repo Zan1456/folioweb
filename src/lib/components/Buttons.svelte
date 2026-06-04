@@ -22,7 +22,7 @@
 </script>
 
 {#if !disabled}
-	<a {href} {id} class="button {typeClass}" {...$$restProps}>
+	<a {href} {id} class="button {typeClass}" on:click {...$$restProps}>
 		<slot>
 			{#if icon}
 				{#if icon.startsWith('ri:')}
@@ -82,6 +82,7 @@
 			color 0.2s ease,
 			box-shadow 0.2s ease;
 		white-space: nowrap;
+		cursor: pointer;
 	}
 
 	.button span {
