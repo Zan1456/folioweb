@@ -11,30 +11,16 @@
         <p class="font_body_16px_regular subtitle">Akik lehetővé teszik a Folio működését</p>
     </div>
     <div class="cards">
-        <div class="card">
-            <div class="card-icon">
-                <span class="ri-server-line"></span>
-            </div>
-            <div class="card-body">
-                <div class="card-header">
-                    <h2 class="font_web_h3">TokyoHost</h2>
-                    <p class="font_body_16px_regular">Szerverek biztosítása és üzemeltetése</p>
-                </div>
-                <Buttons label="Weboldal" type="small_primary"
-                    href="https://tokyohost.eu/"
-                    icon="/tokyohost.svg" ></Buttons>
-            </div>
-        </div>
         <div class="card card-empty">
             <div class="card-icon icon-empty">
-                <span class="ri-add-line"></span>
+                <span class="ri-heart-line"></span>
             </div>
             <div class="card-body">
                 <div class="card-header">
-                    <h2 class="font_web_h3">Ez a rész üres...</h2>
-                    <p class="font_body_16px_regular">Szeretnél hozzájárulni a Folio fejlesztéséhez?</p>
+                    <h2 class="font_web_h3">Ez a rész egyelőre üres...</h2>
+                    <p class="font_body_16px_regular">Szeretnél hozzájárulni a Folio működéséhez vagy fejlesztéséhez? Vedd fel velünk a kapcsolatot!</p>
                 </div>
-                <Buttons label="Kapcsolatfelvétel" type="small_secondary"
+                <Buttons label="Kapcsolatfelvétel" type="small_primary"
                     href={discordInvite} icon="ri:discord-fill"></Buttons>
             </div>
         </div>
@@ -73,15 +59,16 @@
     div.card {
         display: flex;
         flex-direction: row;
-        align-items: flex-start;
-        padding: 24px;
-        gap: 20px;
+        align-items: center;
+        padding: 28px;
+        gap: 24px;
         border-radius: var(--shape-xl, 28px);
         background: var(--md-surface-container, var(--card_card));
         box-shadow: var(--elevation-1);
         flex: 1;
         min-width: 280px;
-        transition: box-shadow 0.2s ease;
+        max-width: 640px;
+        transition: box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
     div.card:hover {
@@ -92,6 +79,10 @@
         background: var(--md-surface-container-low, var(--card_translucent));
         box-shadow: none;
         border: 1.5px dashed var(--md-outline-variant, #BFC9C4);
+    }
+
+    div.card-empty:hover {
+        border-color: var(--md-primary, var(--accent_accent));
     }
 
     .card-icon {

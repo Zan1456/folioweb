@@ -20,7 +20,7 @@ export async function privacyPolicyClient(): Promise<string> {
 	const resp = await fetch(`https://raw.githubusercontent.com/QwIT-Development/privacy-policy/refs/heads/master/${fileLink}`);
 	const policy = await resp.text();
 
-	return policy;
+	return policy.replace(/Firka/g, 'Folio').replace(/legal@firka\.app/g, 'support@zan1456.dev');
 }
 
 export async function downloadsClient(): Promise<{ appVersion: string; extVersion: string }> {

@@ -10,39 +10,56 @@
 	onMount(() => {});
 </script>
 
-<nav>
-	<div class="branding">
-		<a
-			href="/"
-			on:mouseenter={() => (brandingHover = true)}
-			on:mouseleave={() => (brandingHover = false)}
-		>
-			<img src={brandingHover ? hoverLogo : normalLogo} alt="logo" />
-			<span class="font_header_16px brand-name">Folio</span>
-		</a>
-	</div>
-	<div class="links">
-		{#each navLinks as link}
-			<Buttons label={link.name} type={link.style} href={link.url} icon={link.icon}></Buttons>
-		{/each}
-	</div>
-</nav>
+<div class="nav-wrap">
+	<nav>
+		<div class="branding">
+			<a
+				href="/"
+				on:mouseenter={() => (brandingHover = true)}
+				on:mouseleave={() => (brandingHover = false)}
+			>
+				<img src={brandingHover ? hoverLogo : normalLogo} alt="logo" />
+				<span class="font_header_16px brand-name">Folio</span>
+			</a>
+		</div>
+		<div class="links">
+			{#each navLinks as link}
+				<Buttons label={link.name} type={link.style} href={link.url} icon={link.icon}></Buttons>
+			{/each}
+		</div>
+	</nav>
+</div>
 
 <style>
-	nav {
+	.nav-wrap {
 		position: fixed;
 		top: 0;
 		left: 0;
 		right: 0;
 		z-index: 1000;
+		display: flex;
+		justify-content: center;
+		padding: 16px 24px 0 24px;
+		pointer-events: none;
+	}
+
+	nav {
+		pointer-events: auto;
+		width: 100%;
+		max-width: 1240px;
 		height: 64px;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: 0 24px;
-		background: var(--md-surface-container-low, var(--card_card));
-		border-bottom: 1px solid var(--md-outline-variant, #BFC9C4);
-		transition: background 0.3s ease, border-color 0.3s ease;
+		gap: 16px;
+		padding: 0 12px 0 16px;
+		border-radius: var(--shape-full, 100px);
+		background: color-mix(in srgb, var(--md-surface-container-low, var(--card_card)) 72%, transparent);
+		backdrop-filter: blur(20px) saturate(140%);
+		-webkit-backdrop-filter: blur(20px) saturate(140%);
+		border: 1px solid var(--md-outline-variant, #BFC9C4);
+		box-shadow: var(--elevation-1);
+		transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 	}
 
 	div.branding a {
@@ -77,11 +94,24 @@
 	}
 
 	@media (max-width: 825px) {
+		.nav-wrap {
+			position: static;
+			padding: 16px 16px 0 16px;
+			pointer-events: auto;
+		}
+
 		nav {
 			height: auto;
+			max-width: none;
 			flex-direction: column;
+			align-items: stretch;
 			gap: 16px;
-			padding: 16px 20px;
+			padding: 20px;
+			border-radius: var(--shape-xl, 28px);
+		}
+
+		div.branding {
+			align-self: center;
 		}
 
 		div.branding a {

@@ -9,3 +9,11 @@
 <main>
     <Privacy />
 </main>
+
+<style>
+	main {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+	}
+</style>

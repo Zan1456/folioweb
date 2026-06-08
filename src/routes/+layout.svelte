@@ -31,8 +31,8 @@
 	@media (max-width: 825px) {
 		main {
 			min-height: auto;
-			/* mobile: nav stacks vertically (~120px) */
-			padding: 140px 20px 20px 20px;
+			/* mobile: navbar is in normal flow, not floating */
+			padding: 24px 20px 20px 20px;
 		}
 	}
 </style>
