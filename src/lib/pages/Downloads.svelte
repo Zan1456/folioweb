@@ -7,8 +7,8 @@
 	let appVersion = '1.0.1';
 
 	$: appDownloadLinks = {
-		arm64: `https://github.com/Zan1456/folio/releases/download/${appVersion}/app-arm64-v8a-release.apk`,
-		armeabi: `https://github.com/Zan1456/folio/releases/download/${appVersion}/app-armeabi-v7a-release.apk`
+		arm64: `https://github.com/Zan1456/folio/releases/download/${appVersion}/app-arm64-v8a-github-release.apk`,
+		armeabi: `https://github.com/Zan1456/folio/releases/download/${appVersion}/app-armeabi-v7a-github-release.apk`
 	};
 
 	const staticLinks = {
@@ -117,7 +117,7 @@
 			<div class="card-section">
 				<p class="font_header_14px label">Forráskód</p>
 				<div class="section-buttons">
-					<Buttons label="GitHub" href="https://github.com/QwIT-Development/firka-extension" icon="ri:github-fill"></Buttons>
+					<Buttons label="GitHub" href="https://github.com/Zan1456/folio-extension" icon="ri:github-fill"></Buttons>
 				</div>
 			</div>
 		</div>
