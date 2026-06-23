@@ -2,24 +2,6 @@
 	import Buttons from '$lib/components/Buttons.svelte';
 	import { onMount } from 'svelte';
 
-	let cliVersion = '';
-
-	onMount(async () => {
-		try {
-			const cached = localStorage.getItem('latestCliVersion');
-			if (cached) cliVersion = cached;
-
-			const resp = await fetch('/api/getcliversion');
-			const data = await resp.json();
-			if (data.version && data.version !== 'unknown') {
-				cliVersion = data.version;
-				localStorage.setItem('latestCliVersion', cliVersion);
-			}
-		} catch (err) {
-			console.error('failed to fetch folio-cli version:', err);
-		}
-	});
-
 	const projects = [
 		{
 			icon: 'ri:terminal-box-line',
@@ -27,7 +9,7 @@
 			author: 'CsPS',
 			description: 'Parancssoros kliens a Folio-hoz, azoknak, akik a terminálból intéznék a tanulmányaikat.',
 			url: 'https://github.com/CsPS0/folio-cli',
-			version: () => cliVersion
+			repo: 'CsPS0/folio-cli'
 		},
 		{
 			icon: 'ri:terminal-line',
@@ -35,7 +17,7 @@
 			author: 'jarjk',
 			description: 'KRÉTA kliens Rust nyelven, gyors és könnyű, parancssori felülettel.',
 			url: 'https://github.com/jarjk/rsfilc',
-			version: null
+			repo: 'jarjk/rsfilc'
 		},
 		{
 			icon: 'ri:quill-pen-line',
@@ -43,7 +25,7 @@
 			author: 'QwIT Development',
 			description: 'A Folio elődje és a kiterjesztés alapja, amiből az egész projekt elindult.',
 			url: 'https://github.com/qwIT-Development/firka',
-			version: null
+			repo: 'qwIT-Development/firka'
 		},
 		{
 			icon: 'ri:computer-line',
@@ -52,9 +34,40 @@
 			description:
 				'Natív asztali KRÉTA kliens Windows, Linux és macOS rendszerre, jegyekkel, órarenddel és házi feladatokkal.',
 			url: 'https://github.com/doomhyena/toll',
-			version: null
+			repo: 'doomhyena/toll'
 		}
 	];
+
+	let versions: Record<string, string> = {};
+
+	onMount(() => {
+		for (const project of projects) {
+			const cacheKey = `latestVersion:${project.repo}`;
+
+			try {
+				const cached = localStorage.getItem(cacheKey);
+				if (cached) versions = { ...versions, [project.repo]: cached };
+			} catch {
+				// localStorage unavailable, ignore
+			}
+
+			fetch(`/api/getversion?repo=${encodeURIComponent(project.repo)}`)
+				.then((resp) => resp.json())
+				.then((data) => {
+					if (data.version && data.version !== 'unknown') {
+						versions = { ...versions, [project.repo]: data.version };
+						try {
+							localStorage.setItem(cacheKey, data.version);
+						} catch {
+							// localStorage unavailable, ignore
+						}
+					}
+				})
+				.catch((err) => {
+					console.error(`failed to fetch version for ${project.repo}:`, err);
+				});
+		}
+	});
 </script>
 
 <div class="main">
@@ -74,8 +87,8 @@
 					<div class="card-header">
 						<div class="title-row">
 							<h2 class="font_web_h3">{project.title}</h2>
-							{#if project.version && project.version()}
-								<span class="font_body_12px_semibold version-pill">{project.version()}</span>
+							{#if versions[project.repo]}
+								<span class="font_body_12px_semibold version-pill">{versions[project.repo]}</span>
 							{/if}
 						</div>
 						<p class="font_body_14px_regular author">Készítette: {project.author}</p>
