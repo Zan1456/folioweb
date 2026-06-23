@@ -47,7 +47,7 @@
 		},
 		{
 			icon: 'ri:computer-line',
-			title: 'A Toll',
+			title: 'Toll',
 			author: 'Anasztázia',
 			description:
 				'Natív asztali KRÉTA kliens Windows, Linux és macOS rendszerre, jegyekkel, órarenddel és házi feladatokkal.',
