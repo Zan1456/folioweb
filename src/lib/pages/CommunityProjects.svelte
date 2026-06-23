@@ -44,6 +44,15 @@
 			description: 'A Folio elődje és a kiterjesztés alapja, amiből az egész projekt elindult.',
 			url: 'https://github.com/qwIT-Development/firka',
 			version: null
+		},
+		{
+			icon: 'ri:computer-line',
+			title: 'A Toll',
+			author: 'Anasztázia',
+			description:
+				'Natív asztali KRÉTA kliens Windows, Linux és macOS rendszerre, jegyekkel, órarenddel és házi feladatokkal.',
+			url: 'https://github.com/doomhyena/toll',
+			version: null
 		}
 	];
 </script>
