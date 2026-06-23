@@ -15,6 +15,18 @@
 				{
 					title: 'ALAP',
 					items: [
+						'Material you design'
+					]
+				},
+				{
+					title: 'ALAP',
+					items: [
+						'További személyes adatok'
+					]
+				},
+				{
+					title: 'ALAP',
+					items: [
 						'Hamarosan'
 					]
 				},
@@ -29,7 +41,7 @@
 				{
 					title: null,
 					items: [
-						'Hamarosan'
+						'Dashboard szerű kezdőlap'
 					]
 				}
 			]
